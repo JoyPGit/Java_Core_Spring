@@ -39,8 +39,8 @@ public class ToDoController {
     * body params will be needed to update, so send whole body
     * */
     @PutMapping("/update/{todo_id}")
-    public void updateTodo(@RequestBody ToDoEntity body, @PathVariable long todo_id){
-        ResponseEntity.ok().body(service.updateTodo(body, todo_id));
+    public ResponseEntity<ToDoEntity> updateTodo(@RequestBody ToDoEntity body, @PathVariable long todo_id){
+        return ResponseEntity.ok().body(service.updateTodo(body, todo_id));
     }
 
     // for delete i will send id not body

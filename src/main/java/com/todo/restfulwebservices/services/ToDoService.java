@@ -35,9 +35,10 @@ public class ToDoService  implements TodoServiceTemplate {
         // id is private, use getId
         if(entityFromDB.isPresent()){
             // JpaRepo itself extends CrudRepository
-            ToDoEntity todoUpdate = todoRepository.getOne(todo.getId());
+            ToDoEntity todoUpdate = todoRepository.getOne(entityFromDB.get().getId());
             todoUpdate.setName(todo.getName());
-            todoUpdate.setStartTime(todo.getStartTime());
+            System.out.println("start time ---->>> " + todo.getStartTime());
+            todoUpdate.setStartTime(entityFromDB.get().getStartTime());
             todoRepository.save(todoUpdate);
             return todoUpdate;
         }
