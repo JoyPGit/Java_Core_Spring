@@ -16,11 +16,14 @@ public class ToDoEntity {
     @Column
     private String name;
 
-    @CreationTimestamp
     private LocalDateTime startTime;
 
+    @CreationTimestamp
+    private LocalDateTime creationTime;
+
     @UpdateTimestamp
-    private LocalDateTime finishTime;
+    private LocalDateTime lastUpdated;
+
 
 
     public long getId() {
@@ -39,6 +42,22 @@ public class ToDoEntity {
         this.name = name;
     }
 
+    public LocalDateTime getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(LocalDateTime creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
     public LocalDateTime getStartTime() {
         return startTime;
     }
@@ -46,13 +65,4 @@ public class ToDoEntity {
     public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
-
-    public LocalDateTime getFinishTime() {
-        return finishTime;
-    }
-
-    public void setFinishTime(LocalDateTime finishTime) {
-        this.finishTime = finishTime;
-    }
-
 }

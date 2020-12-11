@@ -29,16 +29,16 @@ public class ToDoService  implements TodoServiceTemplate {
     // whole body needs to be sent
     public ToDoEntity updateTodo(ToDoEntity todo, long todo_id) {
         // a check if db entry exists
-        // try with null
         Optional<ToDoEntity> entityFromDB = todoRepository.findById(todo_id);
-        System.out.println("entity "+entityFromDB);
         // id is private, use getId
         if(entityFromDB.isPresent()){
             // JpaRepo itself extends CrudRepository
-            ToDoEntity todoUpdate = todoRepository.getOne(todo.getId());
+            ToDoEntity todoUpdate = todoRepository.getOne(todo_id);
             todoUpdate.setName(todo.getName());
-            todoUpdate.setStartTime(todo.getStartTime());
+            // checking if property exists in request body
+            if(todo.getStartTime() != null) todoUpdate.setStartTime(todo.getStartTime());
             todoRepository.save(todoUpdate);
+            System.out.println("after update "+todoUpdate.getStartTime());
             return todoUpdate;
         }
         else{
